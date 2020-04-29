@@ -1,8 +1,5 @@
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { graphql } from 'gatsby';
-import ToppingsFilter from '../components/ToppingsFilter';
-import PizzaList from '../components/PizzaList';
 
 function usePizza(inventory) {
   const [order, setOrder] = useState([]);

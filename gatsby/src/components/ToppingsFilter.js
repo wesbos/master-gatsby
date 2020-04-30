@@ -7,7 +7,7 @@ export default function ToppingsFilter({ activeTopping }) {
       toppings: allSanityTopping {
         nodes {
           name
-          vegan
+          vegetarian
           id
         }
       }

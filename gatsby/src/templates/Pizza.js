@@ -30,8 +30,7 @@ export const query = graphql`
       }
       Toppings {
         name
-        vegan
-        halal
+        vegetarian
         id
       }
     }

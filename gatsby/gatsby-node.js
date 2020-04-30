@@ -37,7 +37,7 @@ async function turnToppingsIntoPages({ graphql, actions }) {
       toppings: allSanityTopping {
         nodes {
           name
-          vegan
+          vegetarian
           id
         }
       }

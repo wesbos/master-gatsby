@@ -5,7 +5,7 @@ const config = {
       resolve: 'gatsby-source-sanity',
       options: {
         projectId: 'q8tcrnkv',
-        dataset: 'production',
+        dataset: 'development',
         token: process.env.MY_SANITY_TOKEN,
         watchMode: true,
       },

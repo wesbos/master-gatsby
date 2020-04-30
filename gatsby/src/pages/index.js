@@ -1,7 +1,19 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Layout from '../components/Layout';
 
+// export default function HomePage({
+//   data: {
+//     store: { slicemasters },
+//   },
+// }) {
+//   return (
+//     <div>
+//       {slicemasters.map(person => (
+//         <p key={person.name}>{person.name}</p>
+//       ))}
+//     </div>
+//   );
+// }
 export default function HomePage({
   data: {
     store: { slicemasters, hotSlices },
@@ -11,11 +23,11 @@ export default function HomePage({
     <>
       <h2>Slicemasters On:</h2>
       {slicemasters.map(master => (
-        <p>{master.name}</p>
+        <p key={master.name}>{master.name}</p>
       ))}
       <h2>In the Case</h2>
       {hotSlices.map(slice => (
-        <p>{slice.name}</p>
+        <p key={slice.name}>{slice.name}:)</p>
       ))}
     </>
   );

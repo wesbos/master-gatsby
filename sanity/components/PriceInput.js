@@ -13,7 +13,7 @@ export default function PriceInput({ type, value, onChange, inputComponent }) {
   return (
     <div>
       <h2>
-        {type.title} {formatMoney(value / 100)}
+        {type.title} {value ? formatMoney(value / 100) : ''}
       </h2>
       <p>{type.description}.</p>
       <input

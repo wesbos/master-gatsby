@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import stripes from '../assets/images/stripes.svg';
 
 const LogoStyles = styled.div`
-  font-size: 10px;
+  /* This value controls the entire size of the logo*/
+  font-size: 8px;
   width: 30em;
   height: 30em;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
@@ -44,6 +45,7 @@ const LogoStyles = styled.div`
     transform: scale(1.4);
     display: block;
     text-shadow: 0.18em 0.18em 0 rgba(0, 0, 0, 0.05);
+    perspective: 100px;
   }
   .letter {
     font-size: 5em;
@@ -52,10 +54,13 @@ const LogoStyles = styled.div`
     --rotate: -10deg;
     --translateX: 0;
     --translateY: 0;
+    --rotateX: 0deg;
     transform: scale(var(--scale)) rotate(var(--rotate))
-      translateX(var(--translateX)) translateY(var(--translateY));
+      translateX(var(--translateX)) translateY(var(--translateY))
+      rotateX(var(--rotateX));
     display: inline-block;
     line-height: 1;
+    transition: transform 0.3s;
     &.S {
       --translateX: -0.05;
     }

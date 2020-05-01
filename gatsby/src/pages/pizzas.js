@@ -16,7 +16,7 @@ export default function PizzasPage({ data, pageContext }) {
 export const query = graphql`
   query($toppingRegex: String) {
     pizzas: allSanityPizza(
-      filter: { Toppings: { elemMatch: { name: { regex: $toppingRegex } } } }
+      filter: { toppings: { elemMatch: { name: { regex: $toppingRegex } } } }
     ) {
       nodes {
         name
@@ -24,9 +24,12 @@ export const query = graphql`
         slug {
           current
         }
+        toppings {
+          name
+        }
         image {
           asset {
-            fluid(maxWidth: 700) {
+            fluid(maxWidth: 400) {
               ...GatsbySanityImageFluid
             }
           }

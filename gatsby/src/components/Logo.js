@@ -99,7 +99,7 @@ const LogoStyles = styled.div`
 
 export default function Logo() {
   return (
-    <LogoStyles>
+    <LogoStyles className="logo">
       <div className="inner">
         <span className="est">EST 1994</span>
         <h1>

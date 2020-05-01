@@ -14,6 +14,10 @@ const NavStyles = styled.nav`
     list-style: none;
     align-items: center;
     grid-gap: 2rem;
+    margin-top: -6rem;
+  }
+  .logo {
+    margin-top: -8rem;
   }
 
   li {

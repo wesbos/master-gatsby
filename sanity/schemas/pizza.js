@@ -32,8 +32,8 @@ export default {
       },
     },
     {
-      name: 'Toppings',
-      title: 'toppings',
+      title: 'Toppings',
+      name: 'toppings',
       type: 'array',
       editModal: 'popover',
       of: [{ type: 'reference', to: [{ type: 'topping' }] }],
@@ -56,14 +56,12 @@ export default {
       topping2: 'toppings.2.name',
       topping3: 'toppings.3.name',
     },
-    prepare: ({ title, media, topping0, topping1, topping2, topping3 }) => {
-      const toppings = [topping0, topping1, topping2, topping3].filter(Boolean);
-      const subtitle =
-        toppings.length > 0 ? `${toppings.join(', ')}` : 'no toppings';
+    prepare: ({ title, media, ...toppings }) => {
+      const tops = Object.values(toppings).filter(Boolean);
       return {
         title,
         media,
-        subtitle,
+        subtitle: tops.join(', '),
       };
     },
   },

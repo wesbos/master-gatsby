@@ -8,7 +8,7 @@ export default function PizzasPage({ pageContext, data: { pizza } }) {
       <h2>{pizza.name}</h2>
       {pizza.image && <Img fluid={pizza.image.asset.fluid} />}
       <ul>
-        {pizza.Toppings.map(topping => (
+        {pizza.toppings.map(topping => (
           <li key={topping.id}>{topping.name}</li>
         ))}
       </ul>
@@ -28,7 +28,7 @@ export const query = graphql`
           }
         }
       }
-      Toppings {
+      toppings {
         name
         vegetarian
         id

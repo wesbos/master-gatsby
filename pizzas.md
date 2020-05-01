@@ -33,24 +33,22 @@ White after Labour Day
 * Tomatoes
 
 Nacho Average Pizza
-* Jalapenos
+* Hot Peppers
 * Avocado Crema
 * Shredded Lettuce
 * Ground Beef
 
 The Bee Sting
-* Mozza
 * Soppressata
 * Honey
 
 The Pear Necessities
-* Mozza
 * Pear
 * Sweet Potato
 * Spinach
 * Honey
 
-Pepperphoni
+Pepperphony
 * Vegan Pepperoi
 * Vegan Cheese
 * Peppers

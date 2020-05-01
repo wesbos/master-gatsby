@@ -9,10 +9,12 @@ import Footer from './Footer';
 
 const SiteBorderStyles = styled.div`
   max-width: 1000px;
-  margin: 4rem auto;
+  margin: 12rem auto 4rem auto;
   background: white url(${stripes});
   background-size: 80em;
-  padding: 3rem;
+  padding: 2.5rem;
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.044);
+  border: 5px solid white;
 `;
 
 const ContentStyles = styled.div`

@@ -30,6 +30,7 @@ export default function Layout({ children }) {
       <SiteBorderStyles>
         <ContentStyles>
           <Nav></Nav>
+          <p>{process.env.GATSBY_SERVERLESS_BASE}</p>
           {children}
 
           <Footer></Footer>

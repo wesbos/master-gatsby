@@ -5,8 +5,11 @@ import styled from 'styled-components';
 import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
 import calculateOrderTotal from '../utils/calculateOrderTotal';
+import PizzaOrder from '../components/PizzaOrder';
+import MenuItemStyles from '../styles/MenuItemStyles';
+import attachNamesAndPrices from '../utils/attachNamesAndPrices';
 
-const OrderStyles = styled.div`
+const OrderStyles = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
@@ -21,43 +24,12 @@ const OrderStyles = styled.div`
     align-content: start;
   }
 `;
-const MenuItemStyles = styled.div`
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  grid-template-rows: 1fr 1fr;
-  border: 1px solid var(--grey);
-  grid-gap: 0 2rem;
-  align-content: center;
-  align-items: center;
-  min-height: 100px;
-  position: relative;
-  .gatsby-image-wrapper {
-    grid-row: span 2;
-    height: 100%;
-  }
-  p {
-    margin: 0;
-  }
-  button {
-    font-size: 1.5rem;
-    & + button {
-      margin-left: 1rem;
-    }
-    &.remove {
-      background: white;
-      color: var(--red);
-      font-size: 3rem;
-      position: absolute;
-      top: 0;
-      right: 0;
-      box-shadow: none;
-      line-height: 1rem;
-    }
-  }
-`;
 
-function usePizza(inventory) {
+function usePizza({ pizzas, inputs }) {
   const [order, setOrder] = useState([]);
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
   function addToOrder(orderedPizza) {
     setOrder([...order, orderedPizza]);
@@ -67,64 +39,129 @@ function usePizza(inventory) {
     setOrder([...order.slice(0, index), ...order.slice(index + 1)]);
   }
 
+  async function submitOrder(e) {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setMessage(null);
+    const res = await fetch(
+      `${process.env.GATSBY_SERVERLESS_BASE}/placeOrder`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          order: attachNamesAndPrices(order, pizzas),
+          total: formatMoney(calculateOrderTotal(order, pizzas)),
+          name: inputs.name,
+          email: inputs.email,
+          mapleSyrup: inputs.mapleSyrup,
+        }),
+      }
+    );
+
+    const text = JSON.parse(await res.text());
+
+    if (res.status >= 400 && res.status < 600) {
+      setLoading(false);
+      console.log(text);
+      setError(text.message);
+    } else {
+      // it worked!
+      setLoading(false);
+      setMessage('Success! Come on down for your pizza');
+    }
+  }
+
   return {
     order,
     addToOrder,
     removeFromOrder,
+    submitOrder,
+    error,
+    loading,
+    message,
   };
 }
 
-function findPizzaById(pizzas, id) {
-  return pizzas.find(pizza => pizza.id === id);
+function useForm(defaults) {
+  const [values, setValues] = useState(defaults);
+
+  function updateValue(e) {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  return {
+    values,
+    updateValue,
+  };
 }
 
 export default function PizzasPage({ data, pageContext }) {
   const pizzas = data.pizzas.nodes;
-  const { order, addToOrder, removeFromOrder } = usePizza(pizzas);
+  const { values, updateValue } = useForm({
+    name: '',
+    email: '',
+    mapleSyrup: '',
+    description: '',
+  });
+  const {
+    order,
+    addToOrder,
+    removeFromOrder,
+    submitOrder,
+    orderRef,
+    error,
+    message,
+    loading,
+  } = usePizza({ pizzas, inputs: values });
+
+  if (message) {
+    return <p>{message}</p>;
+  }
   return (
     <div>
       <h2>Order!</h2>
-      <OrderStyles>
+      <OrderStyles onSubmit={submitOrder}>
         <fieldset className="span-2">
           <legend>Your Info</legend>
           <label htmlFor="name">Name</label>
-          <input type="text" nane="name" />
+          <input
+            value={values.name}
+            onChange={updateValue}
+            type="text"
+            name="name"
+          />
           <label htmlFor="email">email</label>
-          <input type="email" nane="email" />
+          <input
+            value={values.email}
+            onChange={updateValue}
+            type="email"
+            name="email"
+          />
+          <input
+            type="text"
+            name="mapleSyrup"
+            value={values.mapleSyrup}
+            onChange={updateValue}
+          />
         </fieldset>
         <fieldset>
           <legend>Your Order</legend>
-          {order.map(function(singleOrder, index) {
-            const pizza = findPizzaById(pizzas, singleOrder.id);
-            return (
-              <MenuItemStyles key={`${index}-${pizza.id}`}>
-                <Img fluid={pizza.image.asset.fluid}></Img>
-                <div>
-                  <h2>
-                    {pizza.name} - {singleOrder.size}
-                  </h2>
-                </div>
-                <p>
-                  {formatMoney(
-                    calculatePizzaPrice(pizza.price, singleOrder.size)
-                  )}
-                  <button
-                    type="button"
-                    className="remove"
-                    onClick={() => removeFromOrder(index)}
-                    title={`Remove ${singleOrder.size} ${pizza.name} from Order`}
-                  >
-                    &times;
-                  </button>
-                </p>
-              </MenuItemStyles>
-            );
-          })}
+          <PizzaOrder
+            order={attachNamesAndPrices(order, pizzas)}
+            pizzas={pizzas}
+            removeFromOrder={removeFromOrder}
+          />
         </fieldset>
         <fieldset>
           <legend>Menu</legend>
           {pizzas.map(pizza => (
-            <MenuItemStyles key={pizza.id}>
+            <MenuItemStyles key={pizza.id} ref={orderRef}>
               <Img width="50" height="50" fluid={pizza.image.asset.fluid}></Img>
               <div>
                 <h2>{pizza.name}</h2>
@@ -149,7 +186,10 @@ export default function PizzasPage({ data, pageContext }) {
           <h3>
             Your total is {formatMoney(calculateOrderTotal(order, pizzas))}.
           </h3>
-          <button type="submit">Order Ahead!</button>
+          <div>{error && <p>Error: {error}</p>}</div>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Placing Order' : 'Order Ahead!'}
+          </button>
         </fieldset>
       </OrderStyles>
     </div>

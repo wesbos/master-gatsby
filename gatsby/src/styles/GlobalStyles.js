@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import bg from '../assets/images/bg.svg';
+import stripes from '../assets/images/stripes.svg';
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -11,8 +12,8 @@ const GlobalStyles = createGlobalStyle`
   }
   html {
     background-image: url(${bg});
-    background-size: 450px, 100%;
-    background-attachment: fixed, fixed;
+    background-size: 450px;
+    background-attachment: fixed;
     font-size: 10px;
   }
 
@@ -61,6 +62,13 @@ const GlobalStyles = createGlobalStyle`
     background-color: var(--red) ;
     border-radius: 6px;
     border: 3px solid var(--white);
+  }
+
+  hr {
+    border: 0;
+    height: 8px;
+    background-image: url(${stripes});
+    background-size: 1500px;
   }
 `;
 

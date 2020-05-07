@@ -57,7 +57,56 @@ async function turnToppingsIntoPages({ graphql, actions }) {
   });
 }
 
+async function turnSlicemastersIntoPages({ graphql, actions }) {
+  const pizzaTemplate = path.resolve(`./src/templates/Pizza.js`);
+
+  const { data } = await graphql(`
+    query {
+      allSanityPerson {
+        totalCount
+        nodes {
+          name
+          id
+          slug {
+            current
+          }
+        }
+      }
+    }
+  `);
+
+  // creates pages for each person!
+  data.allSanityPerson.nodes.forEach(person => {
+    console.log(person);
+    actions.createPage({
+      path: `slicemaster/${person.slug.current}`,
+      component: pizzaTemplate,
+      context: {
+        name: person.name,
+        slug: person.slug.current,
+      },
+    });
+  });
+
+  // Paginate Slicemasters
+  const perPage = 2;
+  const pageCount = Math.ceil(data.allSanityPerson.totalCount / perPage);
+  Array.from({ length: pageCount }).forEach((_, i) => {
+    actions.createPage({
+      path: `slicemasters/${i + 1}`,
+      component: path.resolve('./src/pages/slicemasters.js'),
+      context: {
+        skip: i * perPage,
+        currentPage: i + 1,
+      },
+    });
+  });
+}
+
 exports.createPages = async ({ graphql, actions }) => {
-  await turnPizzasIntoPages({ graphql, actions });
-  await turnToppingsIntoPages({ graphql, actions });
+  await Promise.all([
+    turnPizzasIntoPages({ graphql, actions }),
+    turnToppingsIntoPages({ graphql, actions }),
+    turnSlicemastersIntoPages({ graphql, actions }),
+  ]);
 };

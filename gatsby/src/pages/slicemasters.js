@@ -25,7 +25,7 @@ export default function SlicemastersPage({
       <Pagination
         perPage={perPage}
         totalCount={slicemasters.totalCount}
-        currentPage={pageContext.currentPage}
+        currentPage={pageContext.currentPage || 1}
         skip={pageContext.skip}
         base="/slicemasters"
       />
@@ -38,7 +38,6 @@ export default function SlicemastersPage({
           </Slicemaster>
         ))}
       </SlicemasterGrid>
-      <Pagination />
     </>
   );
 }

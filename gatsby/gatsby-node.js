@@ -18,6 +18,7 @@ async function turnPizzasIntoPages({ graphql, actions }) {
 
   // creates pages for each pizza!
   data.allSanityPizza.nodes.forEach(pizza => {
+    console.log(pizza);
     actions.createPage({
       path: `pizza/${pizza.slug.current}`,
       component: pizzaTemplate,
@@ -58,7 +59,7 @@ async function turnToppingsIntoPages({ graphql, actions }) {
 }
 
 async function turnSlicemastersIntoPages({ graphql, actions }) {
-  const pizzaTemplate = path.resolve(`./src/templates/Pizza.js`);
+  const template = path.resolve(`./src/templates/Slicemaster.js`);
 
   const { data } = await graphql(`
     query {
@@ -77,10 +78,9 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
 
   // creates pages for each person!
   data.allSanityPerson.nodes.forEach(person => {
-    console.log(person);
     actions.createPage({
       path: `slicemaster/${person.slug.current}`,
-      component: pizzaTemplate,
+      component: template,
       context: {
         name: person.name,
         slug: person.slug.current,

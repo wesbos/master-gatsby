@@ -36,7 +36,7 @@ function SinglePizza({ pizza }) {
   return (
     <PizzaStyles>
       <Link to={`/pizza/${pizza.slug.current}`}>
-        <h2>{pizza.name}</h2>
+        <h2 className="mark">{pizza.name}</h2>
       </Link>
       <p>{pizza.toppings.map(topping => topping.name).join(', ')}</p>
       <Img fluid={pizza.image.asset.fluid}></Img>

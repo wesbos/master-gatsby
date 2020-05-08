@@ -5,11 +5,10 @@ import PizzaList from '../components/PizzaList';
 
 export default function PizzasPage({ data, pageContext }) {
   return (
-    <div>
-      <h2>Filter By Topping:</h2>
+    <>
       <ToppingsFilter activeTopping={pageContext.topping} />
       <PizzaList pizzas={data.pizzas.nodes} />
-    </div>
+    </>
   );
 }
 

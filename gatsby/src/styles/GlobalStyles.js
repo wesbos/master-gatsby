@@ -70,6 +70,11 @@ const GlobalStyles = createGlobalStyle`
     background-image: url(${stripes});
     background-size: 1500px;
   }
+
+  img {
+    max-width: 100%;
+  }
+
 `;
 
 export default GlobalStyles;

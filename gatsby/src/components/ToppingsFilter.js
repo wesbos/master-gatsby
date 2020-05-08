@@ -1,5 +1,31 @@
 import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
+import styled from 'styled-components';
+
+const ToppingStyles = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  a {
+    display: grid;
+    padding: 5px;
+    background: var(--grey);
+    grid-template-columns: auto 1fr;
+    grid-gap: 0 1rem;
+    text-decoration: none;
+    align-items: center;
+    border-radius: 2px;
+    .count {
+      background: rgba(255, 255, 255, 1);
+      padding: 2px 5px;
+      font-size: 1rem;
+      border-radius: 2px;
+    }
+    &.active {
+      background: var(--yellow);
+    }
+  }
+`;
 
 export default function ToppingsFilter({ activeTopping }) {
   const { toppings, pizzas } = useStaticQuery(graphql`
@@ -44,17 +70,21 @@ export default function ToppingsFilter({ activeTopping }) {
     (a, b) => b.count - a.count
   );
   return (
-    <div>
-      <Link to="/pizzas">
+    <ToppingStyles>
+      <Link to="/pizzas" className={!activeTopping ? 'active' : ''}>
         All
-        {!activeTopping ? `🟡` : `⚪`}
+        <span className="count">{pizzas.nodes.length}</span>
       </Link>
       {sortedToppings.map(topping => (
-        <Link key={topping.id} to={`/topping/${topping.name}`}>
-          {topping.name} ({topping.count})
-          {topping.name === activeTopping ? `🟡` : `⚪`}
+        <Link
+          key={topping.id}
+          to={`/topping/${topping.name}`}
+          className={topping.name === activeTopping ? 'active' : ''}
+        >
+          <span className="name">{topping.name} </span>
+          <span className="count">{topping.count}</span>
         </Link>
       ))}
-    </div>
+    </ToppingStyles>
   );
 }

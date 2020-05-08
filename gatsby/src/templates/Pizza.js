@@ -5,7 +5,7 @@ import Img from 'gatsby-image';
 export default function PizzasPage({ pageContext, data: { pizza } }) {
   return (
     <div>
-      <h2>{pizza.name}</h2>
+      <h2 className="mark">{pizza.name}</h2>
       {pizza.image && <Img fluid={pizza.image.asset.fluid} />}
       <ul>
         {pizza.toppings.map(topping => (

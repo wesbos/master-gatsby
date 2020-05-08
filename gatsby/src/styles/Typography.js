@@ -23,6 +23,21 @@ const Typography = createGlobalStyle`
     color: var(--black);
     text-decoration-color: var(--red);
   }
+  mark, .mark {
+    background: var(--yellow);
+    padding: 0 2px 2px 2px;
+    margin: 0;
+    display: inline-block;
+    line-height: 1;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .tilt {
+    transform: rotate(-2deg);
+  }
 `;
 
 export default Typography;

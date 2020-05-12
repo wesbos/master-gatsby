@@ -8,6 +8,7 @@ import calculateOrderTotal from '../utils/calculateOrderTotal';
 import PizzaOrder from '../components/PizzaOrder';
 import MenuItemStyles from '../styles/MenuItemStyles';
 import attachNamesAndPrices from '../utils/attachNamesAndPrices';
+import SEO from '../components/SEO';
 
 const OrderStyles = styled.form`
   display: grid;
@@ -125,6 +126,7 @@ export default function PizzasPage({ data, pageContext }) {
   }
   return (
     <div>
+      <SEO title="Order Ahead"></SEO>
       <h2>Order!</h2>
       <OrderStyles onSubmit={submitOrder}>
         <fieldset className="span-2">

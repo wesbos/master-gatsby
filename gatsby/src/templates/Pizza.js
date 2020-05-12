@@ -1,18 +1,24 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import { Helmet } from 'react-helmet';
 
 export default function PizzasPage({ pageContext, data: { pizza } }) {
   return (
-    <div>
-      <h2 className="mark">{pizza.name}</h2>
-      {pizza.image && <Img fluid={pizza.image.asset.fluid} />}
-      <ul>
-        {pizza.toppings.map(topping => (
-          <li key={topping.id}>{topping.name}</li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <Helmet>
+        <title>{pizza.name}</title>
+      </Helmet>
+      <div>
+        <h2 className="mark">{pizza.name}</h2>
+        {pizza.image && <Img fluid={pizza.image.asset.fluid} />}
+        <ul>
+          {pizza.toppings.map(topping => (
+            <li key={topping.id}>{topping.name}</li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 }
 

@@ -6,6 +6,7 @@ import Typography from '../styles/Typography';
 import stripes from '../assets/images/stripes.svg';
 import 'normalize.css';
 import Footer from './Footer';
+import SEO from './SEO';
 
 const SiteBorderStyles = styled.div`
   max-width: 1000px;
@@ -22,11 +23,16 @@ const ContentStyles = styled.div`
   padding: 2rem;
 `;
 
-export default function Layout({ children }) {
+export default function Layout({ children, location }) {
   return (
     <>
       <GlobalStyles></GlobalStyles>
       <Typography></Typography>
+      <SEO
+        title="The Best Pizza"
+        description="The Best Pizza in all of the world"
+        location={location}
+      ></SEO>
       <SiteBorderStyles>
         <ContentStyles>
           <Nav></Nav>

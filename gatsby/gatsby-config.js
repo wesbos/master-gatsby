@@ -5,6 +5,11 @@ dotenv.config({
 });
 
 const config = {
+  siteMetadata: {
+    title: `Slick's Slices`,
+    description: `The Best Pizza Ever`,
+    twitter: `@slicks`,
+  },
   plugins: [
     'gatsby-plugin-styled-components',
     {

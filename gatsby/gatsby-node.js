@@ -1,4 +1,5 @@
 import path from 'path';
+import fetch from 'isomorphic-fetch';
 
 async function turnPizzasIntoPages({ graphql, actions }) {
   const pizzaTemplate = path.resolve(`./src/templates/Pizza.js`);
@@ -103,10 +104,48 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
   });
 }
 
-exports.createPages = async ({ graphql, actions }) => {
+async function fetchBeersAndTurnIntoNodes({
+  actions,
+  createNodeId,
+  createContentDigest,
+}) {
+  // 1. Fetch the list of beers
+  const res = await fetch('https://sampleapis.com/beers/api/ale');
+  const beers = await res.json();
+  console.log(`Going to Turn ${beers.length} into nodes`);
+  // 2. Loop over each one
+  for (const beer of beers) {
+    // Create the node for each beer
+    const nodeContent = JSON.stringify(beer);
+    const nodeMeta = {
+      id: createNodeId(`beer-${beer.name}`),
+      parent: null, // this beer does't have a parent
+      children: [], // no children either
+      internal: {
+        type: 'Beer', // Name of node type
+        mediaType: 'application/json', // this is so that other plugins that are looking for this type of media can find it. We don't use this, but it's good to set it.
+        contentDigest: createContentDigest(beer),
+      },
+    };
+    // merge the beer along with the metadata we just created
+    actions.createNode({
+      ...beer,
+      ...nodeMeta,
+    });
+  }
+}
+
+// TODO can I use ES syntax here?
+// Do these things when Gatsby goes to create pages
+export const createPages = async function(params) {
   await Promise.all([
-    turnPizzasIntoPages({ graphql, actions }),
-    turnToppingsIntoPages({ graphql, actions }),
-    turnSlicemastersIntoPages({ graphql, actions }),
+    turnPizzasIntoPages(params),
+    turnToppingsIntoPages(params),
+    turnSlicemastersIntoPages(params),
   ]);
+};
+
+// Do these things when gatsby wants to creat new nodes
+export const sourceNodes = async params => {
+  await Promise.all([fetchBeersAndTurnIntoNodes(params)]);
 };

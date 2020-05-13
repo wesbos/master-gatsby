@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ItemGrid from '../components/ItemGrid';
+import ItemGrid, { LoadingGrid } from '../components/ItemGrid';
 import Grid from '../styles/Grid';
 
 const endpoint = `https://q8tcrnkv.api.sanity.io/v1/graphql/development/default`;
@@ -66,29 +66,32 @@ function useLatestData() {
 }
 
 function CurrentlySlicing({ slicemasters }) {
-  if (!slicemasters) return <p>Loading Slicemasters</p>;
-  if (!slicemasters.length) return <p>No one is working right now</p>;
+  console.log(slicemasters);
   return (
     <div>
       <h2 className="center">
         <span className="mark tilt">Slicemasters On</span>
       </h2>
       <p className="center">Standing by, ready to slice you up</p>
-      <ItemGrid items={slicemasters} />
+      {!slicemasters && <LoadingGrid count={4}></LoadingGrid>}
+      {slicemasters && !slicemasters?.length && (
+        <p>No one is working right now</p>
+      )}
+      {slicemasters?.length && <ItemGrid items={slicemasters} />}
     </div>
   );
 }
 
 function HotSlices({ hotSlices }) {
-  if (!hotSlices) return <p>Loading Hot Slices in your area</p>;
-  if (!hotSlices.length) return <p>No Hot Slices in your area</p>;
   return (
     <div>
       <h2 className="center">
         <span className="mark">In the Case</span>
       </h2>
       <p className="center">Hot and by-the-slice right now. Run!</p>
-      <ItemGrid items={hotSlices} />
+      {!hotSlices && <LoadingGrid count={4}></LoadingGrid>}
+      {hotSlices && !hotSlices?.length && <p>No Hot Slices in your area</p>}
+      {hotSlices?.length && <ItemGrid items={hotSlices} />}
     </div>
   );
 }

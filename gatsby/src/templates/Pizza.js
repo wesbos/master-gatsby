@@ -2,13 +2,13 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { Helmet } from 'react-helmet';
+import SEO from '../components/SEO';
 
 export default function PizzasPage({ pageContext, data: { pizza } }) {
+  console.log(pizza);
   return (
     <>
-      <Helmet>
-        <title>{pizza.name}</title>
-      </Helmet>
+      <SEO title={pizza.name} image={pizza.image?.asset?.fluid?.src}></SEO>
       <div>
         <h2 className="mark">{pizza.name}</h2>
         {pizza.image && <Img fluid={pizza.image.asset.fluid} />}

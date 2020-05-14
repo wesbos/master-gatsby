@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-export default function SEO({ children, location, description, title }) {
+export default function SEO({ children, location, description, title, image }) {
   const { site } = useStaticQuery(graphql`
     query {
       site {
@@ -29,6 +29,8 @@ export default function SEO({ children, location, description, title }) {
       {children}
       {/* Open Graph */}
       {location && <meta property="og:url" content={location.href} />}
+      <meta property="og:url" content={image || '/logo.svg'} />
+
       <meta property="og:title" content={title} key="ogtitle" />
       <meta
         property="og:site_name"
@@ -36,14 +38,6 @@ export default function SEO({ children, location, description, title }) {
         key="ogsitename"
       />
       <meta property="og:description" content={description} key="ogdesc" />
-
-      {/* Twitter */}
-      <meta name="twitter:card" content="summary" key="twcard" />
-      <meta
-        name="twitter:creator"
-        content={site.siteMetadata.twitter}
-        key="twhandle"
-      />
     </Helmet>
   );
 }

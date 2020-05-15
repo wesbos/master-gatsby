@@ -1,1 +1,1 @@
-export { wrapPageElement } from './gatsby-browser.js';
+export { wrapPageElement, wrapRootElement } from './gatsby-browser.js';

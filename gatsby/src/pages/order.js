@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
@@ -9,6 +9,7 @@ import PizzaOrder from '../components/PizzaOrder';
 import MenuItemStyles from '../styles/MenuItemStyles';
 import attachNamesAndPrices from '../utils/attachNamesAndPrices';
 import SEO from '../components/SEO';
+import OrderContext from '../components/OrderContext';
 
 const OrderStyles = styled.form`
   display: grid;
@@ -27,7 +28,8 @@ const OrderStyles = styled.form`
 `;
 
 function usePizza({ pizzas, inputs }) {
-  const [order, setOrder] = useState([]);
+  // const [order, setOrder] = useState([]);
+  const [order, setOrder] = useContext(OrderContext);
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -120,6 +122,9 @@ export default function PizzasPage({ data, pageContext }) {
     message,
     loading,
   } = usePizza({ pizzas, inputs: values });
+  const x = useContext(OrderContext);
+
+  console.log(x);
 
   if (message) {
     return <p>{message}</p>;

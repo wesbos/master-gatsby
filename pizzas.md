@@ -64,3 +64,33 @@ Cluck Norris
 * Chicken
 * Onion
 * Hot Peppers
+
+
+## people
+
+
+Slick is the proprietor, he inherited the business from his late grandfather. Refers to himself as the Pablo Escobar of pizza. He grows his own tomatoes and won’t let anyone ese near them...a little odd but we like him.
+
+Roscoe is the leftover manager. Loves Puperoni. Currently on a diet.
+
+After spending a summer in the New Mexico desert, August became passionate about circular foods. First it was waffles, now it is pizza.
+
+
+Some say Waldo is searching for the freshest ingredents, but in reality pizza isn't a passion, it's a paycheck. Deep down, Waldo is still trying to find himself.
+
+
+Went his whole life calling the crust a "Pizza Border".
+
+
+Louise runs an Etsy shop that sells hand-painted elephant ceramics customized based on your astrology sign.
+
+Enoch played guitar in a shoegaze band but was forced out due to creative differences.
+
+Will remind you that she has no college debt.
+
+Encoach went to Italy once. Will tell you how much better the pizza is 'over there'
+
+Fia qualified for Canada's 2018 rhythmic gymnastics olympic but left the sport to focus full-time on pizza, where she's developing a new kind of pizza toss (a very fast one where you do a flip)
+
+
+Picture of August comes up first when you Google 'people enjoying Italian street foods'.

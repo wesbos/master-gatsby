@@ -19,7 +19,6 @@ async function turnPizzasIntoPages({ graphql, actions }) {
 
   // creates pages for each pizza!
   data.allSanityPizza.nodes.forEach(pizza => {
-    console.log(pizza);
     actions.createPage({
       path: `pizza/${pizza.slug.current}`,
       component: pizzaTemplate,
@@ -90,15 +89,19 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
   });
 
   // Paginate Slicemasters
-  const perPage = 2;
-  const pageCount = Math.ceil(data.allSanityPerson.totalCount / perPage);
+  const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
+  console.log(`---------xx---------`);
+  console.log(pageSize);
+  console.log(`------------------`);
+  const pageCount = Math.ceil(data.allSanityPerson.totalCount / pageSize);
   Array.from({ length: pageCount }).forEach((_, i) => {
     actions.createPage({
       path: `slicemasters/${i + 1}`,
       component: path.resolve('./src/pages/slicemasters.js'),
       context: {
-        skip: i * perPage,
+        skip: i * pageSize,
         currentPage: i + 1,
+        pageSize,
       },
     });
   });

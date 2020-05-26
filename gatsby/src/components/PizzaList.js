@@ -26,7 +26,7 @@ export default function PizzaList({ pizzas }) {
   return (
     <PizzaGridStyles>
       {pizzas.map(pizza => (
-        <SinglePizza pizza={pizza}></SinglePizza>
+        <SinglePizza key={pizza.id} pizza={pizza}></SinglePizza>
       ))}
     </PizzaGridStyles>
   );

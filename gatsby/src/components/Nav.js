@@ -5,6 +5,7 @@ import Logo from './Logo';
 
 const NavStyles = styled.nav`
   font-family: 'frenchFries';
+  margin-bottom: 3rem;
   ul {
     margin: 0;
     padding: 0;
@@ -17,12 +18,14 @@ const NavStyles = styled.nav`
     margin-top: -6rem;
   }
   .logo {
-    margin-top: -8rem;
+    /* margin-top: -8rem; */
+    transform: translateY(-25%);
   }
 
   li {
     --rotate: -2deg;
     transform: rotate(var(--rotate));
+    order: 1;
   }
   li:nth-child(1) {
     --rotate: 1.2deg;
@@ -43,6 +46,29 @@ const NavStyles = styled.nav`
       color: var(--red);
     }
   }
+  @media (max-width: 1000px) {
+    a {
+      font-size: 2rem;
+    }
+  }
+  @media (max-width: 600px) {
+    --columns: 4;
+    ul {
+      grid-template-rows: auto auto;
+      grid-template-columns: repeat(var(--columns), 1fr);
+      justify-items: center;
+    }
+    .logo-item {
+      order: 0;
+      grid-column: 1 / -1;
+    }
+    .logo {
+      transform: none;
+    }
+  }
+  @media (max-width: 500px) {
+    --columns: 2;
+  }
 `;
 
 export default function Nav() {
@@ -55,7 +81,7 @@ export default function Nav() {
         <li>
           <Link to="/pizzas/">Pizza Menu</Link>
         </li>
-        <li>
+        <li className="logo-item">
           <Link to="/">
             <Logo></Logo>
           </Link>

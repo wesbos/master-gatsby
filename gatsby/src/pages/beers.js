@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import SEO from '../components/SEO';
-import Grid from '../styles/Grid';
+import Grid from '../styles/Grids';
 
 const BeerStyles = styled.div`
   text-align: center;

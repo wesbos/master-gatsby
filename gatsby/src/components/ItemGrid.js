@@ -1,19 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import Grid from '../styles/Grid';
+import Grid, { ItemsGrid } from '../styles/Grids';
 
 const Item = styled.div`
   text-align: center;
+  position: relative;
   img {
     height: auto;
     font-size: 0;
+    max-width: 100%;
   }
   p {
     margin: 0;
-    background: var(--yellow);
-    display: inline-block;
-    padding: 2px;
-    transform: rotate(-2deg) translateY(50%);
+    transform: rotate(-2deg) translateY(-50%);
+    position: absolute;
+    width: 100%;
+    left: 0;
+    .mark {
+      display: inline;
+    }
   }
   @keyframes shine {
     from {
@@ -39,7 +44,7 @@ const Item = styled.div`
 
 export function LoadingGrid({ count }) {
   return (
-    <Grid style={{ '--gap': '20px' }}>
+    <ItemsGrid>
       {Array.from({ length: count }, (_, i) => (
         <Item key={i}>
           <p className="mark">Loading...</p>
@@ -52,16 +57,18 @@ export function LoadingGrid({ count }) {
           />
         </Item>
       ))}
-    </Grid>
+    </ItemsGrid>
   );
 }
 
 export default function ItemGrid({ items }) {
   return (
-    <Grid style={{ '--gap': '20px' }}>
+    <ItemsGrid>
       {items.map(item => (
         <Item key={item._id}>
-          <p className="mark">{item.name}</p>
+          <p>
+            <span className="mark">{item.name}</span>
+          </p>
           <img
             width="500"
             height="400"
@@ -74,6 +81,6 @@ export default function ItemGrid({ items }) {
           />
         </Item>
       ))}
-    </Grid>
+    </ItemsGrid>
   );
 }

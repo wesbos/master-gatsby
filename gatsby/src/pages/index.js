@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ItemGrid, { LoadingGrid } from '../components/ItemGrid';
-import Grid from '../styles/Grid';
+import { HomePageGrid } from '../styles/Grids';
 
 const endpoint = `https://q8tcrnkv.api.sanity.io/v1/graphql/development/default`;
 
@@ -34,6 +34,7 @@ function useLatestData() {
               }
               hotSlices {
                 name
+                _id
                 image {
                   asset {
                     url
@@ -66,7 +67,6 @@ function useLatestData() {
 }
 
 function CurrentlySlicing({ slicemasters }) {
-  console.log(slicemasters);
   return (
     <div>
       <h2 className="center">
@@ -103,10 +103,10 @@ export default function HomePage() {
       <h1>The Best Pizza in Hamilton.</h1>
       <p>Open 11am to 11pm every single day.</p>
 
-      <Grid style={{ '--columns': 2, '--gap': '40px' }}>
+      <HomePageGrid>
         <CurrentlySlicing slicemasters={slicemasters} />
         <HotSlices hotSlices={hotSlices} />
-      </Grid>
+      </HomePageGrid>
     </div>
   );
 }

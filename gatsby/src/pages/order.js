@@ -15,15 +15,26 @@ const OrderStyles = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
-  .span-2 {
-    grid-column: span 2;
-  }
   fieldset {
+    grid-column: span 2;
     max-height: 600px;
     overflow: auto;
     display: grid;
     grid-gap: 1rem;
     align-content: start;
+    &.menu,
+    &.order {
+      grid-column: span 1;
+    }
+  }
+  .maple {
+    display: none;
+  }
+  @media (max-width: 900px) {
+    fieldset.menu,
+    fieldset.order {
+      grid-column: span 2;
+    }
   }
 `;
 
@@ -122,9 +133,6 @@ export default function PizzasPage({ data, pageContext }) {
     message,
     loading,
   } = usePizza({ pizzas, inputs: values });
-  const x = useContext(OrderContext);
-
-  console.log(x);
 
   if (message) {
     return <p>{message}</p>;
@@ -155,17 +163,10 @@ export default function PizzasPage({ data, pageContext }) {
             name="mapleSyrup"
             value={values.mapleSyrup}
             onChange={updateValue}
+            className="maple"
           />
         </fieldset>
-        <fieldset>
-          <legend>Your Order</legend>
-          <PizzaOrder
-            order={attachNamesAndPrices(order, pizzas)}
-            pizzas={pizzas}
-            removeFromOrder={removeFromOrder}
-          />
-        </fieldset>
-        <fieldset>
+        <fieldset className="menu">
           <legend>Menu</legend>
           {pizzas.map(pizza => (
             <MenuItemStyles key={pizza.id} ref={orderRef}>
@@ -189,7 +190,15 @@ export default function PizzasPage({ data, pageContext }) {
             </MenuItemStyles>
           ))}
         </fieldset>
-        <fieldset className="span-2">
+        <fieldset className="order">
+          <legend>Your Order</legend>
+          <PizzaOrder
+            order={attachNamesAndPrices(order, pizzas)}
+            pizzas={pizzas}
+            removeFromOrder={removeFromOrder}
+          />
+        </fieldset>
+        <fieldset>
           <h3>
             Your total is {formatMoney(calculateOrderTotal(order, pizzas))}.
           </h3>

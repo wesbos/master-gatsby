@@ -1,23 +1,25 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import { Helmet } from 'react-helmet';
 import SEO from '../components/SEO';
+import Grid from '../styles/Grids';
 
 export default function PizzasPage({ pageContext, data: { pizza } }) {
   console.log(pizza);
   return (
     <>
       <SEO title={pizza.name} image={pizza.image?.asset?.fluid?.src}></SEO>
-      <div>
-        <h2 className="mark">{pizza.name}</h2>
+      <Grid style={{ '--columns': 2 }}>
         {pizza.image && <Img fluid={pizza.image.asset.fluid} />}
-        <ul>
-          {pizza.toppings.map(topping => (
-            <li key={topping.id}>{topping.name}</li>
-          ))}
-        </ul>
-      </div>
+        <div>
+          <h2 className="mark">{pizza.name}</h2>
+          <ul>
+            {pizza.toppings.map(topping => (
+              <li key={topping.id}>{topping.name}</li>
+            ))}
+          </ul>
+        </div>
+      </Grid>
     </>
   );
 }

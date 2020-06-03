@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="371px" height="355px" viewBox="0 0 371 355" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>Logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-3.9%" y="-3.9%" width="107.9%" height="107.9%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.139887456 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <rect id="path-2" x="0" y="0" width="342.999994" height="342.999994"></rect>
+        <pattern id="pattern-3" width="18.6332781" height="18.6332781" x="-18.6332781" y="-18.6332781" patternUnits="userSpaceOnUse">
+            <use xlink:href="#image-4" transform="scale(0.388193295,0.388193295)"></use>
+        </pattern>
+        <image id="image-4" width="48" height="48" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAMKADAAQAAAABAAAAMAAAAADbN2wMAAABX0lEQVRoBe3Y7Q2CMBAGYGu3gOgOJrAQcRAHUXcwrsEcrFH7agpB+ex5cJfQH9ISvfO5xkjP5Hnudn445+5lWZ4xxZo4TJZlV2NMEeJwxbdpml6QxCc7JUlyqKrqGZJSroiDeIjLGd/6JEfuJJzx7VKV4kJYbK9mxBugGVEDtCJaAI2IH4A2RCdAE6IXoAUxCNCAGAVIR0wCSEZMBkhFzAJIRMwGSENEASQhogFSECSABAQZsDYCAIMvQR1rHYqs7x7ckJwKwOfXQKAr8dDYjQhn7D0q5xcF+jiYYk0cDv0l9IFCHM74W18oVLnrusRvYusLdVX++x7nTtR/ZJxJAOKKXwM4k4Qd4UC0ABoRPwBtiE6AJkQvQAtiEKABMQqQjpgEkIyYDJCKmAWQiJgNkIaIAkhCRAOkIEgACQgyYG0EAP84yLM976NAGH2P4ltf6FOf5rWvUrjfvCt+9h3/BX5SBuUP9sYWAAAAAElFTkSuQmCC"></image>
+        <filter x="-2.0%" y="-4.7%" width="103.9%" height="109.4%" filterUnits="objectBoundingBox" id="filter-5">
+            <feOffset dx="7" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.0343913899 0" type="matrix" in="shadowOffsetOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-898.000000, -83.000000)">
+            <g id="Logo" transform="translate(639.000000, 88.000000)">
+                <g id="Pizza-Box" filter="url(#filter-1)" transform="translate(272.999995, -0.000000)">
+                    <rect id="white" fill="#FFFFFF" x="0" y="0" width="342.999994" height="342.999994"></rect>
+                    <g id="stripes">
+                        <use fill="url(#pattern-3)" fill-rule="evenodd" xlink:href="#path-2"></use>
+                        <use fill="#FF4949" fill-rule="evenodd" style="mix-blend-mode: lighten;" xlink:href="#path-2"></use>
+                        <rect stroke="#FFFFFF" stroke-width="14.6999997" stroke-linejoin="square" x="7.34999987" y="7.34999987" width="328.299994" height="328.299994"></rect>
+                    </g>
+                    <rect id="White-Inner" fill="#FFFFFF" x="24.4999996" y="24.4999996" width="293.999995" height="293.999995"></rect>
+                </g>
+                <g id="Slicks" filter="url(#filter-5)" transform="translate(0.166867, 6.932493)" fill="#FF4949" font-family="FrenchFries-Regular, French Fries" font-weight="normal">
+                    <text id="S" transform="translate(290.443993, 144.451997) rotate(-10.000000) translate(-290.443993, -144.451997) " font-size="130.591997">
+                        <tspan x="258.579546" y="179.047999">S</tspan>
+                    </text>
+                    <text id="L" transform="translate(358.819992, 129.667997) rotate(2.000000) translate(-358.819992, -129.667997) " font-size="159.543996">
+                        <tspan x="325.953929" y="193.263999">L</tspan>
+                    </text>
+                    <text id="i" transform="translate(396.395991, 129.667997) rotate(-7.000000) translate(-396.395991, -129.667997) " font-size="128.743997">
+                        <tspan x="379.916759" y="162.263999">i</tspan>
+                    </text>
+                    <text id="c" transform="translate(453.376684, 147.528059) rotate(10.000000) translate(-453.376684, -147.528059) " font-size="134.903997">
+                        <tspan x="420.932273" y="201.528059">c</tspan>
+                    </text>
+                    <text id="k" transform="translate(514.704802, 127.412779) rotate(-10.000000) translate(-514.704802, -127.412779) " font-size="159.543996">
+                        <tspan x="474.021083" y="191.412779">k</tspan>
+                    </text>
+                    <text id="‘" transform="translate(549.781355, 136.440240) rotate(20.000000) translate(-549.781355, -136.440240) " font-size="134.903997">
+                        <tspan x="539.798459" y="190.44024">‘</tspan>
+                    </text>
+                    <text id="s" transform="translate(603.430460, 112.844738) rotate(17.000000) translate(-603.430460, -112.844738) " font-size="141.063997">
+                        <tspan x="574.441809" y="169.344738">s</tspan>
+                    </text>
+                </g>
+                <text id="SLICES" font-family="FrenchFries-Regular, French Fries" font-size="55.2999991" font-weight="normal" letter-spacing="15.8481355" fill="#000000">
+                    <tspan x="325.84304" y="275.938363">SLICES</tspan>
+                </text>
+                <text id="EST-1994" font-family="FrenchFries-Regular, French Fries" font-size="13.2999998" font-weight="normal" letter-spacing="3.81157716" fill="#000000">
+                    <tspan x="408.575167" y="66.7381519">EST </tspan>
+                    <tspan x="446.471375" y="66.7381519" letter-spacing="1.51847381">1994</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,11 +1,21 @@
 ## Intro and setup
 
 1. Get the starter files
+1. Open each one in a different VS cpde
 2. `npm install` on both sanity and gatsby
 3. `npm install -g gatsby-cli @sanity/cli`
 
 Prettier rules: Check my youtube video
 
+## What is Gatsby?
+
+Gatsby is a framework for building Modern websites
+
+pre-generation - it's just HTML at the end of the day
+Re-hydration - React picks it back up again
+Image handling
+Routing and pre-loading
+Plugins - offline access, code highlighting, embedding
 
 ## Creating Pages in Gatsby
 
@@ -53,8 +63,10 @@ Prettier rules: Check my youtube video
 
 ## Adding realtime data with browser fetching
 
+## Building
 
 ## Deploying: Netlify
+
 ## Deploying: Gatsby Cloud
 
 

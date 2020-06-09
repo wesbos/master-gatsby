@@ -14,18 +14,18 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/base": "^1.149.10",
-    "@sanity/components": "^1.149.10",
-    "@sanity/core": "^1.149.12",
-    "@sanity/default-layout": "^1.149.10",
-    "@sanity/default-login": "^1.149.11",
-    "@sanity/desk-tool": "^1.149.10",
-    "@sanity/google-maps-input": "^1.149.7",
-    "@sanity/vision": "^1.149.0",
-    "prop-types": "^15.6",
-    "react": "^16.2",
-    "react-dom": "^16.2",
-    "react-icons": "^2.2.5"
+    "@sanity/base": "^1.149.16",
+    "@sanity/components": "^1.149.16",
+    "@sanity/core": "^1.149.16",
+    "@sanity/default-layout": "^1.149.16",
+    "@sanity/default-login": "^1.149.16",
+    "@sanity/desk-tool": "^1.149.16",
+    "@sanity/google-maps-input": "^1.149.16",
+    "@sanity/vision": "^1.149.16",
+    "prop-types": "^15.7",
+    "react": "^16.13",
+    "react-dom": "^16.13",
+    "react-icons": "^3.10.0"
   },
   "devDependencies": {}
 }

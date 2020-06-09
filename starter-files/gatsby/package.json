@@ -1,5 +1,5 @@
 {
-  "name": "slicks-slices",
+  "name": "slicks-slices-frontend",
   "private": true,
   "description": "Slick Serves the Sweetest Slices",
   "version": "0.1.0",
@@ -12,6 +12,11 @@
     "clean": "gatsby clean",
     "netlify": "netlify dev",
     "prebuild": "netlify-lambda install"
+  },
+  "eslintConfig": {
+    "extends": [
+      "wesbos"
+    ]
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.7",

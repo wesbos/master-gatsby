@@ -1,5 +1,5 @@
-import path from 'path';
-import fetch from 'isomorphic-fetch';
+const path = require('path');
+const fetch = require('isomorphic-fetch');
 
 async function turnPizzasIntoPages({ graphql, actions }) {
   const pizzaTemplate = path.resolve(`./src/templates/Pizza.js`);
@@ -18,7 +18,7 @@ async function turnPizzasIntoPages({ graphql, actions }) {
   `);
 
   // creates pages for each pizza!
-  data.allSanityPizza.nodes.forEach(pizza => {
+  data.allSanityPizza.nodes.forEach((pizza) => {
     actions.createPage({
       path: `pizza/${pizza.slug.current}`,
       component: pizzaTemplate,
@@ -46,7 +46,7 @@ async function turnToppingsIntoPages({ graphql, actions }) {
   `);
 
   // creates pages for each pizza!
-  data.toppings.nodes.forEach(topping => {
+  data.toppings.nodes.forEach((topping) => {
     actions.createPage({
       path: `topping/${topping.name}`,
       component: toppingTemplate,
@@ -77,7 +77,7 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
   `);
 
   // creates pages for each person!
-  data.allSanityPerson.nodes.forEach(person => {
+  data.allSanityPerson.nodes.forEach((person) => {
     actions.createPage({
       path: `slicemaster/${person.slug.current}`,
       component: template,
@@ -140,7 +140,7 @@ async function fetchBeersAndTurnIntoNodes({
 
 // TODO can I use ES syntax here?
 // Do these things when Gatsby goes to create pages
-export const createPages = async function(params) {
+exports.createPages = async function (params) {
   await Promise.all([
     turnPizzasIntoPages(params),
     turnToppingsIntoPages(params),
@@ -149,6 +149,6 @@ export const createPages = async function(params) {
 };
 
 // Do these things when gatsby wants to creat new nodes
-export const sourceNodes = async params => {
+exports.sourceNodes = async (params) => {
   await Promise.all([fetchBeersAndTurnIntoNodes(params)]);
 };

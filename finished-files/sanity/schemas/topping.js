@@ -1,4 +1,4 @@
-import icon from 'react-icons/lib/md/person';
+import { FaPepperHot as icon } from 'react-icons/fa';
 
 export default {
   name: 'topping',

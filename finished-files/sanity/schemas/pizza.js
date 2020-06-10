@@ -1,4 +1,4 @@
-import icon from 'react-icons/lib/md/person';
+import { MdLocalPizza as icon } from 'react-icons/md';
 import PriceInput from '../components/PriceInput';
 
 export default {

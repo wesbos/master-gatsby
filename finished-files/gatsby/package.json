@@ -5,10 +5,10 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "build": "npx --node-arg '-r esm' gatsby build",
-    "develop": "npx --node-arg '-r esm' gatsby develop",
+    "build": "gatsby build",
+    "develop": "gatsby develop",
     "start": "npm run develop",
-    "serve": "npx --node-arg '-r esm' gatsby serve",
+    "serve": "gatsby serve",
     "clean": "gatsby clean",
     "netlify": "netlify dev",
     "prebuild": "netlify-lambda install"
@@ -21,7 +21,6 @@
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.7",
     "dotenv": "^8.2.0",
-    "esm": "^3.2.25",
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.4.7",
     "gatsby-plugin-styled-components": "^3.3.4",

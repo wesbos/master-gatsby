@@ -26,6 +26,7 @@
     "@sanity/default-login": "1.149.16-canary.379",
     "@sanity/desk-tool": "1.149.16-canary.379",
     "@sanity/google-maps-input": "1.149.16-canary.379",
+    "@sanity/structure": "^1.149.16-canary.379",
     "@sanity/vision": "1.149.16-canary.379",
     "prop-types": "^15.7",
     "react": "^16.13",

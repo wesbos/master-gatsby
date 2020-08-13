@@ -1,0 +1,34 @@
+{
+  "root": true,
+  "api": {
+    "projectId": "HEY YOU YA YOU FILL YOUR ID IN HERE",
+    "dataset": "production"
+  },
+  "project": {
+    "name": "slicks-slices"
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "@sanity/vision"
+      ]
+    }
+  },
+  "parts": [
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schema"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./sidebar.js"
+    }
+  ]
+}

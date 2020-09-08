@@ -1,12 +1,13 @@
-const path = require('path');
-const fetch = require('isomorphic-fetch');
+import path, { resolve } from 'path';
+import fetch from 'isomorphic-fetch';
 
 async function turnPizzasIntoPages({ graphql, actions }) {
-  const pizzaTemplate = path.resolve(`./src/templates/Pizza.js`);
-
+  // 1. Get a template for this page
+  const pizzaTemplate = path.resolve('./src/templates/Pizza.js');
+  // 2. Query all pizzas
   const { data } = await graphql(`
     query {
-      allSanityPizza {
+      pizzas: allSanityPizza {
         nodes {
           name
           slug {
@@ -16,14 +17,13 @@ async function turnPizzasIntoPages({ graphql, actions }) {
       }
     }
   `);
-
-  // creates pages for each pizza!
-  data.allSanityPizza.nodes.forEach((pizza) => {
+  // 3. Loop over each pizza and create a page for that pizza
+  data.pizzas.nodes.forEach((pizza) => {
     actions.createPage({
+      // What is the URL for this new page??
       path: `pizza/${pizza.slug.current}`,
       component: pizzaTemplate,
       context: {
-        name: pizza.name,
         slug: pizza.slug.current,
       },
     });
@@ -31,39 +31,68 @@ async function turnPizzasIntoPages({ graphql, actions }) {
 }
 
 async function turnToppingsIntoPages({ graphql, actions }) {
-  const toppingTemplate = path.resolve(`./src/pages/pizzas.js`);
-
+  // 1. Get the template
+  const toppingTemplate = path.resolve('./src/pages/pizzas.js');
+  // 2. query all the toppings
   const { data } = await graphql(`
     query {
       toppings: allSanityTopping {
         nodes {
           name
-          vegetarian
           id
         }
       }
     }
   `);
-
-  // creates pages for each pizza!
+  // 3. createPage for that topping
   data.toppings.nodes.forEach((topping) => {
     actions.createPage({
       path: `topping/${topping.name}`,
       component: toppingTemplate,
       context: {
         topping: topping.name,
-        toppingRegex: `/${topping.name}/gi`,
+        // TODO Regex for Topping
+        toppingRegex: `/${topping.name}/i`,
       },
     });
   });
+  // 4. Pass topping data to pizza.js
+}
+
+async function fetchBeersAndTurnIntoNodes({
+  actions,
+  createNodeId,
+  createContentDigest,
+}) {
+  // 1. Fetch a  list of beers
+  const res = await fetch('https://sampleapis.com/beers/api/ale');
+  const beers = await res.json();
+  // 2. Loop over each one
+  for (const beer of beers) {
+    // create a node for each beer
+    const nodeMeta = {
+      id: createNodeId(`beer-${beer.name}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: 'Beer',
+        mediaType: 'application/json',
+        contentDigest: createContentDigest(beer),
+      },
+    };
+    // 3. Create a node for that beer
+    actions.createNode({
+      ...beer,
+      ...nodeMeta,
+    });
+  }
 }
 
 async function turnSlicemastersIntoPages({ graphql, actions }) {
-  const template = path.resolve(`./src/templates/Slicemaster.js`);
-
+  // 1. Query all slicemasters
   const { data } = await graphql(`
     query {
-      allSanityPerson {
+      slicemasters: allSanityPerson {
         totalCount
         nodes {
           name
@@ -75,29 +104,31 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
       }
     }
   `);
-
-  // creates pages for each person!
-  data.allSanityPerson.nodes.forEach((person) => {
+  // TODO: 2. Turn each slicemaster into their own page (TODO)
+  data.slicemasters.nodes.forEach((slicemaster) => {
     actions.createPage({
-      path: `slicemaster/${person.slug.current}`,
-      component: template,
+      component: resolve('./src/templates/Slicemaster.js'),
+      path: `/slicemaster/${slicemaster.slug.current}`,
       context: {
-        name: person.name,
-        slug: person.slug.current,
+        name: slicemaster.person,
+        slug: slicemaster.slug.current,
       },
     });
   });
 
-  // Paginate Slicemasters
+  // 3. Figure out how many pages there are based on how many slicemasters there are, and how many per page!
   const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
-  console.log(`---------xx---------`);
-  console.log(pageSize);
-  console.log(`------------------`);
-  const pageCount = Math.ceil(data.allSanityPerson.totalCount / pageSize);
+  const pageCount = Math.ceil(data.slicemasters.totalCount / pageSize);
+  console.log(
+    `There are ${data.slicemasters.totalCount} total people. And we have ${pageCount} pages with ${pageSize} per page`
+  );
+  // 4. Loop from 1 to n and create the pages for them
   Array.from({ length: pageCount }).forEach((_, i) => {
+    console.log(`Creating page ${i}`);
     actions.createPage({
-      path: `slicemasters/${i + 1}`,
+      path: `/slicemasters/${i + 1}`,
       component: path.resolve('./src/pages/slicemasters.js'),
+      // This data is pass to the template when we create it
       context: {
         skip: i * pageSize,
         currentPage: i + 1,
@@ -107,48 +138,20 @@ async function turnSlicemastersIntoPages({ graphql, actions }) {
   });
 }
 
-async function fetchBeersAndTurnIntoNodes({
-  actions,
-  createNodeId,
-  createContentDigest,
-}) {
-  // 1. Fetch the list of beers
-  const res = await fetch('https://sampleapis.com/beers/api/ale');
-  const beers = await res.json();
-  console.log(`Going to Turn ${beers.length} into nodes`);
-  // 2. Loop over each one
-  for (const beer of beers) {
-    // Create the node for each beer
-    const nodeContent = JSON.stringify(beer);
-    const nodeMeta = {
-      id: createNodeId(`beer-${beer.name}`),
-      parent: null, // this beer does't have a parent
-      children: [], // no children either
-      internal: {
-        type: 'Beer', // Name of node type
-        mediaType: 'application/json', // this is so that other plugins that are looking for this type of media can find it. We don't use this, but it's good to set it.
-        contentDigest: createContentDigest(beer),
-      },
-    };
-    // merge the beer along with the metadata we just created
-    actions.createNode({
-      ...beer,
-      ...nodeMeta,
-    });
-  }
+export async function sourceNodes(params) {
+  // fetch a list of beers and source them into our gatsby API!
+  await Promise.all([fetchBeersAndTurnIntoNodes(params)]);
 }
 
-// TODO can I use ES syntax here?
-// Do these things when Gatsby goes to create pages
-exports.createPages = async function (params) {
+export async function createPages(params) {
+  // Create pages dynamically
+  // Wait for all promises to be resolved before finishing this function
   await Promise.all([
     turnPizzasIntoPages(params),
     turnToppingsIntoPages(params),
     turnSlicemastersIntoPages(params),
   ]);
-};
-
-// Do these things when gatsby wants to creat new nodes
-exports.sourceNodes = async (params) => {
-  await Promise.all([fetchBeersAndTurnIntoNodes(params)]);
-};
+  // 1. Pizzas
+  // 2. Toppings
+  // 3. Slicemasters
+}

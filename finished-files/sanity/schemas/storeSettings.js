@@ -1,34 +1,30 @@
 import { MdStore as icon } from 'react-icons/md';
 
 export default {
+  // Computer Name
   name: 'storeSettings',
+  // visible title
   title: 'Settings',
   type: 'document',
   icon,
   fields: [
     {
-      name: 'slicemasters',
-      title: 'Current Slicemasters Slicing',
+      name: 'name',
+      title: 'Store Name',
+      type: 'string',
+      description: 'Name of the pizza',
+    },
+    {
+      name: 'slicemaster',
+      title: 'Slicemasters Currently Slicing',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'person' }] }],
     },
     {
       name: 'hotSlices',
-      title: 'Hot Slices currently available in the case',
+      title: 'Hot Slices available in the case',
       type: 'array',
       of: [{ type: 'reference', to: [{ type: 'pizza' }] }],
     },
   ],
-  preview: {
-    select: {
-      slicemasters: 'slicemasters',
-      hotSlices: 'hotSlices',
-      media: 'hotSlices.0.image',
-    },
-    prepare: ({ slicemasters, hotSlices, media }) => ({
-      title: `Currently ${slicemasters.length} Slicemasters`,
-      subtitle: `and ${hotSlices.length} types of pizza`,
-      media,
-    }),
-  },
 };

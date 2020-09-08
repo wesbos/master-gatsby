@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import GatsbyImage from 'gatsby-image';
+import Img from 'gatsby-image';
 import styled from 'styled-components';
 import Pagination from '../components/Pagination';
 import SEO from '../components/SEO';
@@ -10,12 +10,13 @@ const SlicemasterGrid = styled.div`
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 `;
-const Slicemaster = styled.div`
-  .gatsby-image-wrapper {
-    height: 400px;
-  }
+
+const SlicemasterStyles = styled.div`
   a {
     text-decoration: none;
+  }
+  .gatsby-image-wrapper {
+    height: 400px;
   }
   h2 {
     transform: rotate(-2deg);
@@ -25,44 +26,41 @@ const Slicemaster = styled.div`
     position: relative;
     z-index: 2;
   }
-
   .description {
     background: var(--yellow);
     padding: 1rem;
     margin: 2rem;
     margin-top: -6rem;
-    position: relative;
     z-index: 2;
+    position: relative;
     transform: rotate(1deg);
+    text-align: center;
   }
 `;
 
-export default function SlicemastersPage({
-  pageContext,
-  data: { slicemasters },
-}) {
+export default function SlicemastersPage({ data, pageContext }) {
+  const slicemasters = data.slicemasters.nodes;
   return (
     <>
-      <SEO title={`Slicemasters — Page ${pageContext.currentPage || 1}`}></SEO>
+      <SEO title={`Slicemasters - Page ${pageContext.currentPage || 1}`} />
       <Pagination
-        perPage={parseInt(process.env.GATSBY_PAGE_SIZE)}
-        totalCount={slicemasters.totalCount}
+        pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
+        totalCount={data.slicemasters.totalCount}
         currentPage={pageContext.currentPage || 1}
         skip={pageContext.skip}
         base="/slicemasters"
       />
-      <hr />
       <SlicemasterGrid>
-        {slicemasters.nodes.map(person => (
-          <Slicemaster key={person.id}>
+        {slicemasters.map((person) => (
+          <SlicemasterStyles key={person.id}>
             <Link to={`/slicemaster/${person.slug.current}`}>
               <h2>
                 <span className="mark">{person.name}</span>
               </h2>
-              <GatsbyImage fluid={person.image.asset.fluid} />
-              <div className="description">{person.description}</div>
             </Link>
-          </Slicemaster>
+            <Img fluid={person.image.asset.fluid} />
+            <p className="description">{person.description}</p>
+          </SlicemasterStyles>
         ))}
       </SlicemasterGrid>
     </>
@@ -70,7 +68,7 @@ export default function SlicemastersPage({
 }
 
 export const query = graphql`
-  query SliceMasters($skip: Int! = 0, $pageSize: Int! = 4) {
+  query($skip: Int = 0, $pageSize: Int = 2) {
     slicemasters: allSanityPerson(limit: $pageSize, skip: $skip) {
       totalCount
       nodes {

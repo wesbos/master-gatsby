@@ -73,3 +73,5 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+finished-files-before-record/

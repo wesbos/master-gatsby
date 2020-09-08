@@ -2,45 +2,54 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import SEO from '../components/SEO';
-import Grid from '../styles/Grids';
 
-const BeerStyles = styled.div`
-  text-align: center;
+const BeerGridStyles = styled.div`
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+`;
+
+const SingleBeerStyles = styled.div`
   border: 1px solid var(--grey);
   padding: 2rem;
+  text-align: center;
   img {
     width: 100%;
     height: 200px;
     object-fit: contain;
+    display: block;
+    display: grid;
+    align-items: center;
+    font-size: 10px;
   }
 `;
 
 export default function BeersPage({ data }) {
   return (
     <>
-      <SEO title="Our Beer List"></SEO>
+      <SEO title={`Beers! We have ${data.beers.nodes.length} in stock`} />
       <h2 className="center">
-        We have {data.beers.nodes.length} Beers Available. Dine in only.
+        We have {data.beers.nodes.length} Beers Available. Dine in Only!
       </h2>
-      <Grid style={{ '--columns': 3 }}>
-        {data.beers.nodes.map(beer => {
+      <BeerGridStyles>
+        {data.beers.nodes.map((beer) => {
           const rating = Math.round(beer.rating.average);
           return (
-            <BeerStyles id={beer.id}>
-              <img src={beer.image} alt={beer.name} lazy />
+            <SingleBeerStyles key={beer.id}>
+              <img src={beer.image} alt={beer.name} />
               <h3>{beer.name}</h3>
               {beer.price}
-              <p title={`${rating} Stars out of 5`}>
-                <span className="star starOn">{`⭐`.repeat(rating)}</span>
+              <p title={`${rating} out of 5 stars`}>
+                {`⭐`.repeat(rating)}
                 <span style={{ filter: `grayscale(100%)` }}>
                   {`⭐`.repeat(5 - rating)}
                 </span>
-                <small className="count">({beer.rating.reviews})</small>
+                <span>({beer.rating.reviews})</span>
               </p>
-            </BeerStyles>
+            </SingleBeerStyles>
           );
         })}
-      </Grid>
+      </BeerGridStyles>
     </>
   );
 }

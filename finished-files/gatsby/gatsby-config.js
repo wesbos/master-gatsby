@@ -1,27 +1,27 @@
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 
-dotenv.config({
-  path: `.env`,
-});
+dotenv.config({ path: '.env' });
 
-const config = {
+export default {
+  pathPrefix: '/pizza',
   siteMetadata: {
-    title: `Slick's Slices`,
-    description: `The Best Pizza Ever`,
-    twitter: `@slicks`,
+    title: `Slicks Slices`,
+    siteUrl: 'https://gatsby.pizza',
+    description: 'The best pizza place in Hamilton!',
+    twitter: '@slicksSlices',
   },
   plugins: [
+    'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     {
+      // this is the name of the plugin you are adding
       resolve: 'gatsby-source-sanity',
       options: {
-        projectId: 'q8tcrnkv',
-        dataset: 'development',
-        token: process.env.SANITY_TOKEN,
+        projectId: '0jfvvkkd',
+        dataset: 'production',
         watchMode: true,
+        token: process.env.SANITY_TOKEN,
       },
     },
   ],
 };
-
-module.exports = config;

@@ -1,27 +1,24 @@
-import React from 'react';
+import React, { Children } from 'react';
 import S from '@sanity/desk-tool/structure-builder';
 
-// This file lets us create a custom sidebar
-export default () =>
-  // first we create a list
-  S.list()
-    // And Give a title
+// build a custom sidebar
+export default function Sidebar() {
+  return S.list()
     .title(`Slick's Slices`)
-    // then we list which items we want
     .items([
-      // First first item is a custom singleton
+      // create new sub item
       S.listItem()
-        // give it a Title
         .title('Home Page')
         .icon(() => <strong>🔥</strong>)
-        // When you click settings, what happens?
         .child(
-          // we show an editor
           S.editor()
-            // for the storeSettings Schema Type
             .schemaType('storeSettings')
-            // And the ID of the document to edit. In our case Downtown
+            // make a new document ID, so we don't have a random string of numbers
             .documentId('downtown')
         ),
-      ...S.documentTypeListItems(),
+      // add in the rest of our document items
+      ...S.documentTypeListItems().filter(
+        item => item.getId() !== 'storeSettings'
+      ),
     ]);
+}

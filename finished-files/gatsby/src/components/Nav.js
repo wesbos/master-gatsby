@@ -4,55 +4,57 @@ import styled from 'styled-components';
 import Logo from './Logo';
 
 const NavStyles = styled.nav`
-  font-family: 'frenchFries';
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
+  .logo {
+    transform: translateY(-25%);
+  }
   ul {
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr auto 1fr 1fr;
     text-align: center;
     list-style: none;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr auto 1fr 1fr;
     grid-gap: 2rem;
+    align-items: center;
     margin-top: -6rem;
   }
-  .logo {
-    /* margin-top: -8rem; */
-    transform: translateY(-25%);
-  }
-
   li {
     --rotate: -2deg;
     transform: rotate(var(--rotate));
     order: 1;
-  }
-  li:nth-child(1) {
-    --rotate: 1.2deg;
-  }
-  li:nth-child(2) {
-    --rotate: -2.5deg;
-  }
-  li:nth-child(4) {
-    --rotate: 2.5deg;
-  }
-  li:hover {
-    --rotate: 0deg;
+    &:nth-child(1) {
+      --rotate: 1deg;
+    }
+    &:nth-child(2) {
+      --rotate: -2.5deg;
+    }
+    &:nth-child(4) {
+      --rotate: 2.5deg;
+    }
+    &:hover {
+      --rotate: 3deg;
+    }
   }
   a {
     font-size: 3rem;
     text-decoration: none;
+    display: block;
     &:hover {
       color: var(--red);
     }
-  }
-  @media (max-width: 1000px) {
-    a {
+    @media (max-width: 800px) {
       font-size: 2rem;
     }
+    /* &[aria-current='page'] {
+      color: var(--red);
+    } */
   }
   @media (max-width: 600px) {
     --columns: 4;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--grey);
+    padding-bottom: 2rem;
     ul {
       grid-template-rows: auto auto;
       grid-template-columns: repeat(var(--columns), 1fr);
@@ -83,14 +85,14 @@ export default function Nav() {
         </li>
         <li className="logo-item">
           <Link to="/">
-            <Logo></Logo>
+            <Logo />
           </Link>
         </li>
         <li>
-          <Link to="/slicemasters/">SliceMasters</Link>
+          <Link to="/slicemasters">SliceMasters</Link>
         </li>
         <li>
-          <Link to="/order/">Order Ahead!</Link>
+          <Link to="/order">Order Ahead!</Link>
         </li>
       </ul>
     </NavStyles>

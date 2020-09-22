@@ -2,6 +2,8 @@
   "recommendations": [
     "dbaeumer.vscode-eslint",
     "wesbos.theme-cobalt2",
-    "formulahendry.auto-rename-tag"
+    "formulahendry.auto-rename-tag",
+    "Prisma.vscode-graphql",
+    "jpoissonnier.vscode-styled-components"
   ]
 }

@@ -9,4 +9,5 @@ This repo includes the starter files, stepped solutions and sample data for doin
 ## FAQ
 
 **Q:** How can I set a custom Emmet expand keyboard shortcut?
+
 **A:** In VS Code, you can go to `File` -> `Preferences` -> `Keyboard Shortcuts` (Windows, Linux) or `Code` -> `Preferences` -> `Keyboard Shortcuts` (Mac). Search for `Emmet Expand Abbreviation` and you should see the current keyboard shortcut there. Double-click on the current key-bind to set a new keyboard shortcut.

@@ -69,7 +69,7 @@ Cluck Norris
 ## people
 
 
-Slick is the proprietor, he inherited the business from his late grandfather. Refers to himself as the Pablo Escobar of pizza. He grows his own tomatoes and won’t let anyone ese near them...a little odd but we like him.
+Slick is the proprietor, he inherited the business from his late grandfather. Refers to himself as the Pablo Escobar of pizza. He grows his own tomatoes and won’t let anyone else near them...a little odd but we like him.
 
 Roscoe is the leftover manager. Loves Puperoni. Currently on a diet.
 

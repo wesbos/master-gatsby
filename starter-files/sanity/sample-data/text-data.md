@@ -6,7 +6,7 @@ chimi hendirx
 
 Here Comes Truffle
 * Roasted Garlic
-* Mushroom
+* Mushrooms
 * Truffle
 
 Dough Exotic
@@ -49,20 +49,20 @@ The Pear Necessities
 * Honey
 
 Pepperphony
-* Vegan Pepperoi
+* Vegan Pepperoni
 * Vegan Cheese
 * Peppers
 * Basil
 
 Holy Shiitake
-* Garlic
+* Roasted Garlic
 * Mushrooms
 * Onions
 * Truffle
 
 Cluck Norris
 * Chicken
-* Onion
+* Onions
 * Hot Peppers
 
 

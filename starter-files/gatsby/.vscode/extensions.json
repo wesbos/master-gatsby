@@ -3,7 +3,7 @@
     "dbaeumer.vscode-eslint",
     "wesbos.theme-cobalt2",
     "formulahendry.auto-rename-tag",
-    "Prisma.vscode-graphql",
+    "graphql.vscode-graphql",
     "jpoissonnier.vscode-styled-components"
   ]
 }

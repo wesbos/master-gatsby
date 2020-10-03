@@ -8,9 +8,14 @@ const OrderStyles = styled.form`
     grid-column: span 2;
     max-height: 600px;
     overflow: auto;
-    display: grid;
-    gap: 1rem;
-    align-content: start;
+    label {
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
+    label + label {
+      margin-top: 1rem;
+    }
     &.order,
     &.menu {
       grid-column: span 1;

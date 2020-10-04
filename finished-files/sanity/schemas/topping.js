@@ -10,7 +10,7 @@ export default {
   fields: [
     {
       name: 'name',
-      title: 'Pizza Name',
+      title: 'Topping Name',
       type: 'string',
       description: 'What is the name of the topping?',
     },
@@ -18,7 +18,6 @@ export default {
       name: 'vegetarian',
       title: 'Vegetarian',
       type: 'boolean',
-      description: 'What is the name of the topping?',
       options: {
         layout: 'checkbox',
       },

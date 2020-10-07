@@ -16,4 +16,4 @@ This repo includes the starter files, stepped solutions and sample data for doin
 
 Did you blog about your expierience? Do the course in Typescript? Use WordPress instead? Send us a PR with links to your implementiations!
 
-- [Creating your own Gatsby Live Preview for Sanity](https://www.simeongriggs.dev/roll-your-own-gatsby-live-preview-for-sanity#get-your-preview-into-sanity) has never been easier now with DigitalOcean App Platform.
+- [Creating your own Gatsby Live Preview for Sanity](https://www.simeongriggs.dev/roll-your-own-gatsby-live-preview-for-sanity) has never been easier now with DigitalOcean App Platform.

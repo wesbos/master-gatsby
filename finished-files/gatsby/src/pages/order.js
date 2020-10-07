@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import SEO from '../components/SEO';
@@ -40,22 +40,26 @@ export default function OrderPage({ data }) {
       <OrderStyles onSubmit={submitOrder}>
         <fieldset disabled={loading}>
           <legend>Your Info</legend>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={values.name}
-            onChange={updateValue}
-          />
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={values.email}
-            onChange={updateValue}
-          />
+          <label htmlFor="name">
+            Name
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={values.name}
+              onChange={updateValue}
+            />
+          </label>
+          <label htmlFor="email">
+            Email
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={values.email}
+              onChange={updateValue}
+            />
+          </label>
           <input
             type="mapleSyrup"
             name="mapleSyrup"

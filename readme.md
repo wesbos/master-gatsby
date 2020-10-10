@@ -12,6 +12,10 @@ This repo includes the starter files, stepped solutions and sample data for doin
 
 **A:** In VS Code, you can go to `File` -> `Preferences` -> `Keyboard Shortcuts` (Windows, Linux) or `Code` -> `Preferences` -> `Keyboard Shortcuts` (Mac). Search for `Emmet Expand Abbreviation` and you should see the current keyboard shortcut there. Double-click on the current key-bind to set a new keyboard shortcut. I have mine set to `Ctrl` + `E` which I really like but you can pick any combo you like! 
 
+**Q:** What is the the trick used that helps with reloading the page?
+
+**A:** It's the Fast Refresh Environment Variable. You add `GATSBY_HOT_LOADER=fast-refresh` inside of your `.env` file. There is an example `.env` file in the `finished-files` directory. It is usable in gatsby@2.19.39 onward.
+
 ## Comunity Contributions
 
 Did you blog about your expierience? Do the course in Typescript? Use WordPress instead? Send us a PR with links to your implementiations!

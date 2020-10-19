@@ -6,7 +6,7 @@ import SEO from '../components/SEO';
 export default function SlicemasterPage({ data: { person } }) {
   return (
     <>
-      <SEO title={person.name} image={person.image.asset.src} />
+      <SEO title={person.name} image={person.image?.asset?.fluid?.src} />
       <div className="center">
         <Img fluid={person.image.asset.fluid} />
         <h2>

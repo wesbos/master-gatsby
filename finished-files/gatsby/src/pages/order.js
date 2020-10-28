@@ -113,7 +113,7 @@ export default function OrderPage({ data }) {
           <h3>
             Your Total is {formatMoney(calculateOrderTotal(order, pizzas))}
           </h3>
-          <div>{error ? <p>Error: {error}</p> : ''}</div>
+          <div aria-live="polite" aria-atomic="true">{error ? <p>Error: {error}</p> : ''}</div>
           <button type="submit" disabled={loading}>
             {loading ? 'Placing Order...' : 'Order Ahead'}
           </button>

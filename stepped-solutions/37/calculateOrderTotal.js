@@ -1,4 +1,4 @@
-import calculatePizzaPrice from './calcuatePizzaPrice';
+import calculatePizzaPrice from './calculatePizzaPrice';
 
 export default function calculateOrderTotal(order, pizzas) {
   return order.reduce((runningTotal, singleOrder) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Img from 'gatsby-image';
 import MenuItemStyles from '../styles/MenuItemStyles';
-import calculatePizzaPrice from '../utils/calcuatePizzaPrice';
+import calculatePizzaPrice from '../utils/calculatePizzaPrice';
 import formatMoney from '../utils/formatMoney';
 
 export default function PizzaOrder({ order, pizzas, removeFromOrder }) {

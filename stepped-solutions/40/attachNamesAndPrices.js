@@ -1,5 +1,5 @@
 import formatMoney from './formatMoney';
-import calculatePizzaPrice from './calcuatePizzaPrice';
+import calculatePizzaPrice from './calculatePizzaPrice';
 
 export default function attachNamesAndPrices(order, pizzas) {
   return order.map((item) => {

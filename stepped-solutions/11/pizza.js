@@ -38,12 +38,5 @@ export default {
       description: 'Price of the pizza in cents',
       validation: Rule => Rule.min(1000),
     },
-    {
-      name: 'toppings',
-      title: 'Toppings',
-      type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'topping' }] }],
-      // TODO: Add custom input component
-    },
   ],
 };

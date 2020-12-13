@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const MenuItemStyles = styled.div`
   display: grid;
@@ -8,6 +8,7 @@ const MenuItemStyles = styled.div`
   align-content: center;
   align-items: center;
   position: relative;
+  max-height: 100px;
   .gatsby-image-wrapper {
     grid-row: span 2;
     height: 100%;

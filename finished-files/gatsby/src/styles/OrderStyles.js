@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const OrderStyles = styled.form`
   display: grid;
@@ -21,7 +21,7 @@ const OrderStyles = styled.form`
     &.order,
     &.menu {
       grid-column: span 1;
-      align-content: flex-start;
+      align-con: flex-start;
       /* Chrome is weird about Grid and fieldsets, so we add a fixed height to fix it :)  */
       height: 600px;
     }

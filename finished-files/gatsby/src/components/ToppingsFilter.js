@@ -1,6 +1,6 @@
-import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
-import styled from 'styled-components';
+import React from "react";
+import { useStaticQuery, graphql, Link } from "gatsby";
+import styled from "styled-components";
 
 const ToppingsStyles = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ const ToppingsStyles = styled.div`
       background: white;
       padding: 2px 5px;
     }
-    &[aria-current='page'] {
+    &[aria-current="page"] {
       background: var(--yellow);
     }
   }
@@ -33,20 +33,14 @@ function countPizzasInToppings(pizzas) {
     .map((pizza) => pizza.toppings)
     .flat()
     .reduce((acc, topping) => {
-      // check if this is an existing topping
-      const existingTopping = acc[topping.id];
-      if (existingTopping) {
-        //  if it is, increment by 1
-        existingTopping.count += 1;
-      } else {
-        // otherwise create a new entry in our acc and set it to one
-        acc[topping.id] = {
-          id: topping.id,
-          name: topping.name,
-          count: 1,
-        };
-      }
-      return acc;
+      const defaultTopping = { ...topping, count: 0 };
+      const { count, ...rest } = acc[topping.id] || defaultTopping;
+      const updatedTopping = { ...rest, count: count + 1 };
+
+      return {
+        ...acc,
+        [topping.id]: updatedTopping,
+      };
     }, {});
   // sort them based on their count
   const sortedToppings = Object.values(counts).sort(
@@ -56,17 +50,9 @@ function countPizzasInToppings(pizzas) {
 }
 
 export default function ToppingsFilter({ activeTopping }) {
-  // Get a list of all the toppings
   // Get a list of all the Pizzas with their toppings
-  const { toppings, pizzas } = useStaticQuery(graphql`
+  const { pizzas } = useStaticQuery(graphql`
     query {
-      toppings: allSanityTopping {
-        nodes {
-          name
-          id
-          vegetarian
-        }
-      }
       pizzas: allSanityPizza {
         nodes {
           toppings {
@@ -91,7 +77,7 @@ export default function ToppingsFilter({ activeTopping }) {
         <Link
           to={`/topping/${topping.name}`}
           key={topping.id}
-          className={topping.name === activeTopping ? 'active' : ''}
+          className={topping.name === activeTopping ? "active" : ""}
         >
           <span className="name">{topping.name}</span>
           <span className="count">{topping.count}</span>

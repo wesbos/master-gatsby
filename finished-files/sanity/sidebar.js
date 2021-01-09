@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 import S from '@sanity/desk-tool/structure-builder';
 
 // build a custom sidebar

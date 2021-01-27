@@ -35,10 +35,6 @@ const Typography = createGlobalStyle`
   .center {
     text-align: center;
   }
-
-  .tilt {
-    transform: rotate(-2deg);
-  }
 `;
 
 export default Typography;

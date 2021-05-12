@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nodemailer": "^6.4.10"
+    "nodemailer": "^6.4.16"
   }
 }

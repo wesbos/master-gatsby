@@ -31,7 +31,7 @@ export default function BeersPage({ data }) {
       </h2>
       <BeerGridStyles>
         {data.beers.nodes.map((beer) => {
-          const rating = Math.round(beer.rating.average);
+          const rating = Math.round(beer?.rating?.average || 0);
           return (
             <SingleBeerStyles key={beer.id}>
               <img src={beer.image} alt={beer.name} />
@@ -42,7 +42,7 @@ export default function BeersPage({ data }) {
                 <span style={{ filter: `grayscale(100%)` }}>
                   {`⭐`.repeat(5 - rating)}
                 </span>
-                <span>({beer.rating.reviews})</span>
+                <span>({beer?.rating?.reviews || 0})</span>
               </p>
             </SingleBeerStyles>
           );

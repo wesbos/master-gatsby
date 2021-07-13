@@ -1,0 +1,62 @@
+{
+  "name": "slicks-slices-frontend",
+  "private": true,
+  "description": "Slick Serves the Sweetest Slices",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "//": "⁉️ Hey! This might look confusing but allow me to explain. The command we want to run is called gatsby build. But because we want to use es modules with gatsby, we use a package called esm. One way to require it is to set the NODE_OPTIONS environmental variable to -r esm. Finally to make this work for windows users, we use the cross-env package. Hopefully once Node es modules are stable, we can bring this back to simple gatsby build",
+    "build": "cross-env NODE_OPTIONS=\"-r esm\" gatsby build",
+    "develop": "cross-env NODE_OPTIONS=\"-r esm\" gatsby develop",
+    "start": "npm run develop",
+    "serve": "cross-env NODE_OPTIONS=\"-r esm\" gatsby serve",
+    "clean": "gatsby clean",
+    "netlify": "netlify dev",
+    "prebuild": "netlify-lambda install"
+  },
+  "eslintConfig": {
+    "extends": [
+      "wesbos"
+    ],
+    "rules": {
+      "react/prop-types": 0
+    }
+  },
+  "dependencies": {
+    "babel-plugin-styled-components": "^1.11.1",
+    "dotenv": "^8.2.0",
+    "gatsby": "^2.24.63",
+    "gatsby-image": "^2.4.17",
+    "gatsby-plugin-react-helmet": "^3.3.10",
+    "gatsby-plugin-styled-components": "^3.3.10",
+    "gatsby-source-sanity": "^6.0.4",
+    "isomorphic-fetch": "^2.2.1",
+    "netlify-cli": "^2.62.0",
+    "netlify-lambda": "^2.0.1",
+    "normalize.css": "^8.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
+    "styled-components": "^5.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-wesbos": "^1.0.1",
+    "eslint-plugin-html": "^6.1.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "esm": "^3.2.25",
+    "prettier": "^2.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wesbos/slicks-slices"
+  }
+}

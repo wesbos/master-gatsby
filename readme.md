@@ -44,6 +44,10 @@ This repo includes the starter files, stepped solutions and sample data for doin
 
 **A:** Changes to the schema in your local Sanity studio will not automatically change the Sanity GraphQL API, you'll have to deploy those changes by using `sanity graphql deploy production`. _Make sure that you are in the `Sanity` folder in your terminal when you run that command._
 
+**Q:** What is the the trick used that helps with reloading the page?
+
+**A:** It's the Fast Refresh Environment Variable. You add `GATSBY_HOT_LOADER=fast-refresh` inside of your `.env` file. There is an example `.env` file in the `finished-files` directory. It is usable in gatsby@2.19.39 onward.
+
 ## Comunity Contributions
 
 Did you blog about your experience? Do the course in Typescript? Use WordPress instead? Send us a PR with links to your implementations!

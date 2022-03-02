@@ -2,6 +2,7 @@
 // for this to work you have to kill the terminal and restart terminal with npm start
 import React from 'react';
 import Layout from './src/components/Layout';
+// import global styles to the layout
 
 export function wrapPageElement({ element, props }) {
   // props is a "spread element"
